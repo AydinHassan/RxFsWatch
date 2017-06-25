@@ -27,9 +27,11 @@ class FsWatch extends Observable
             ->merge($this->errors->map(function (\Throwable $ex) {
                 throw $ex;
             }))
-            ->map(function ($data) {
-                list($file, $bitwise) = explode(' ', $data);
-                return new WatchEvent($file, (int)$bitwise);
+            ->flatMap(function ($data) {
+                return array_map(function (string $file) {
+                    list($file, $bitwise) = explode(' ', $file);
+                    return new WatchEvent($file, (int) $bitwise);
+                }, explode("\n", trim($data)));
             })
             ->subscribe($observer);
     }
