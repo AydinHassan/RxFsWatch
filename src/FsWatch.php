@@ -28,10 +28,10 @@ class FsWatch extends Observable
                 throw $ex;
             }))
             ->flatMap(function ($data) {
-                return array_map(function (string $file) {
+                return Observable::fromArray(array_map(function (string $file) {
                     list($file, $bitwise) = explode(' ', $file);
                     return new WatchEvent($file, (int) $bitwise);
-                }, explode("\n", trim($data)));
+                }, explode("\n", trim($data))));
             })
             ->subscribe($observer);
     }
