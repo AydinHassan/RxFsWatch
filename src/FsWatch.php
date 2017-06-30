@@ -35,4 +35,9 @@ class FsWatch extends Observable
             })
             ->subscribe($observer);
     }
+
+    public function getSubject() : ProcessSubject
+    {
+        return $this->process;
+    }
 }
