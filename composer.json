@@ -1,5 +1,5 @@
 {
-  "name": "rx/fswatch",
+  "name": "aydin-hassan/osx-rx-fswatch",
   "type": "library",
   "description": "Library for monitoring file changes with RxPHP",
   "keywords": [
